@@ -1,0 +1,11 @@
+type Result = variant { Ok : StatsData; Err : text };
+type Result_1 = variant { Ok; Err : text };
+type Result_2 = variant { Ok : nat; Err : text };
+type StatsData = record { closed : bool; token : principal; owner : principal };
+service : (principal, principal) -> {
+  getBackers : () -> (vec principal) query;
+  getKeepers : () -> (vec principal) query;
+  getStats : () -> (Result) query;
+  setClosed : (bool) -> (Result_1);
+  withdraw : (principal, nat) -> (Result_2);
+}

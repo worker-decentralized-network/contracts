@@ -1,0 +1,34 @@
+type Profile = record {
+  status : ProfileStatus;
+  wallet_address : principal;
+  comment : text;
+  discord_account : text;
+  community_name : text;
+  number : nat16;
+};
+type ProfileStatus = variant { Passed; Refused; Pending };
+type Result = variant { Ok : Profile; Err : text };
+type Result_1 = variant { Ok : StatsData; Err : text };
+type Result_2 = variant { Ok; Err : text };
+type StatsData = record {
+  fee : nat;
+  closed : bool;
+  admin : principal;
+  fee_to : principal;
+  owner : principal;
+  ledger : principal;
+};
+service : () -> {
+  get : () -> (Result) query;
+  getAll : (nat64, nat64) -> (vec Profile) query;
+  getStats : () -> (Result_1) query;
+  insert : (nat64, text, text) -> (Result_2);
+  pass : (principal) -> (Result_2);
+  refuse : (principal, text) -> (Result_2);
+  setAdmin : (principal) -> (Result_2);
+  setClosed : (bool) -> (Result_2);
+  setFee : (nat) -> (Result_2);
+  setFeeTo : (principal) -> (Result_2);
+  setLedger : (principal) -> (Result_2);
+  updateProfile : (Profile) -> (Result_2);
+}

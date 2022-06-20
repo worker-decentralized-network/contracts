@@ -1,0 +1,35 @@
+type CapacityInfo = record {
+  reward_capacity : nat64;
+  rest_charged : nat;
+  long_term_capacity : nat64;
+  inviter : principal;
+  charged : nat;
+  invitation_expire : nat64;
+  invitee_count : nat64;
+};
+type Result = variant { Ok; Err : text };
+type Result_1 = variant { Ok : CapacityInfo; Err : text };
+type Result_2 = variant { Ok : StatsData; Err : text };
+type StatsData = record {
+  fee : nat;
+  closed : bool;
+  fee_to : principal;
+  owner : principal;
+  fee_with_inviter : nat;
+  ledger : principal;
+  base_expire : nat64;
+  extend_expire : nat64;
+};
+service : (principal, nat, nat, principal, nat64, nat64) -> {
+  activeCapacity : (opt nat64, opt principal) -> (Result);
+  clearExpireCapacity : () -> (Result);
+  getAllCapacityInfo : (nat64, nat64) -> (vec CapacityInfo) query;
+  getCapacityInfo : (principal) -> (Result_1) query;
+  getStats : () -> (Result_2) query;
+  setBaseExpire : (nat64) -> (Result);
+  setClosed : (bool) -> (Result);
+  setExtendExpire : (nat64) -> (Result);
+  setFee : (nat) -> (Result);
+  setFeeTo : (principal) -> (Result);
+  setFeeWithInviter : (nat) -> (Result);
+}

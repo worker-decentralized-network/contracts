@@ -1,0 +1,7 @@
+[workspace]
+members = [
+    "src/team_leader",
+    "src/account_capacity",
+    "src/wdn",
+    "src/node"
+]

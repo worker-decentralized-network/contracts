@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "dfx": "0.10.0",
+  "canisters": {
+    "team_leader": {
+      "type": "rust",
+      "package": "team_leader",
+      "candid": "src/team_leader/team_leader.did"
+    },
+    "account_capacity": {
+      "type": "rust",
+      "package": "account_capacity",
+      "candid": "src/account_capacity/account_capacity.did"
+    },
+    "wdn": {
+      "type": "rust",
+      "package": "wdn",
+      "candid": "src/wdn/wdn.did"
+    },
+    "node": {
+      "type": "rust",
+      "package": "node",
+      "candid": "src/node/node.did"
+    }
+  },
+  "defaults": {
+    "build": {
+      "packtool": "",
+      "args": ""
+    }
+  },
+  "networks": {
+    "local": {
+      "bind": "0.0.0.0:8000",
+      "type": "ephemeral"
+    }
+  }
+}

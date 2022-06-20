@@ -1,0 +1,19 @@
+[package]
+name = "wdn"
+version = "0.1.0"
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+candid = "0.7.14"
+ic-kit = "0.4.4"
+ic-cdk = "0.5.1"
+ic-cdk-macros = "0.5.1"
+assert-panic = "1.0.1"
+serde = "1.0.137"
+cap-std = { git = "https://github.com/Psychedelic/cap", rev = "a97dd7f5bcbf0af45d58f0a36a3ed39f4a5d7b6e", package="cap-standards", features = ["alpha-dip20", "cap-sdk", "sdk-impls"] }
+cap-sdk = { git = "https://github.com/Psychedelic/cap.git", rev = "a97dd7f5bcbf0af45d58f0a36a3ed39f4a5d7b6e" }
+
+[target.'cfg(not(target_family = "wasm"))'.dependencies]
+async-std = { version="1.11.0", features = ["attributes"] }
